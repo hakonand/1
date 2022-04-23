@@ -14,20 +14,16 @@ import {
 	Stack,
 	Button,
 } from '@mui/material'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 // components
 
-import BuyerSideRowOf3 from 'src/components/BuyerSideLandingcc/BuyerSideRowOf3'
 import firebase from 'src/firebase/firebase'
 
 import Page from 'src/components/Page'
 
-import BuyerSideHighlight from 'src/components/BuyerSideLandingcc/BuyerSideHighlight'
-import BuyerSideHighlightRow from 'src/components/BuyerSideLandingcc/BuyerSideHighlightRow'
-import StorefrontHeader from 'src/components/Storefront/StorefrontHeader'
-import StorefrontCategories from 'src/components/Storefront/StorefrontCategories'
-import StorefrontProductSection from 'src/components/Storefront/StorefrontProductSection'
+import StorefrontHeader from 'src/components/storefrontfolder/StorefrontHeader'
+import StorefrontCategories from 'src/components/storefrontfolder/StorefrontCategories'
+import StorefrontProductSection from 'src/components/storefrontfolder/StorefrontProductSection'
 
 import DashboardLayout from 'src/layouts/dashboard'
 
