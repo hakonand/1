@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
 
-import OrderList from 'src/components/orderList/OrderList'
+import OrderList from 'src/components/orderList/OrderListComponent'
 import Page from 'src/components/Page'
 import HeaderBreadcrumbs from 'src/components/HeaderBreadcrumbs'
 import DashboardLayout from 'src/layouts/dashboard'

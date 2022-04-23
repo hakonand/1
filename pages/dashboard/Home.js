@@ -9,7 +9,7 @@ import {
 	EcommerceAds,
 	EcommerceSoMe,
 } from 'src/components/dashboard/index'
-import OrderList from 'src/components/orderList/OrderList'
+import OrderList from 'src/components/orderList/OrderListComponent'
 
 import DashboardLayout from 'src/layouts/dashboard'
 

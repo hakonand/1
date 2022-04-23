@@ -1,5 +1,3 @@
-import { PATH_DASHBOARD } from 'src/routes/paths'
-
 // ----------------------------------------------------------------------
 
 function Page() {

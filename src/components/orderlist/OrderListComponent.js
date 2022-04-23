@@ -79,7 +79,7 @@ function applySortFilter(array, comparator, query) {
 
 // ----------------------------------------------------------------------
 
-export default function OrderList() {
+export default function OrderListComponent() {
 	const [orders, setOrders] = useState([
 		{
 			id: 'ab',
