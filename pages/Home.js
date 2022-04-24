@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react'
 
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { Grid, Typography } from '@mui/material'
+import NextLink from 'next/link'
 
 import { styled } from '@mui/material/styles'
 // components
@@ -12,6 +13,8 @@ import BuyerSideWelcome from 'src/components/BuyerSideLandingcc/BuyerSideWelcome
 import BuyerSideHighlight from 'src/components/BuyerSideLandingcc/BuyerSideHighlight'
 import BuyerSideHighlightRow from 'src/components/BuyerSideLandingcc/BuyerSideHighlightRow'
 import BuyerSideRowOf3 from 'src/components/BuyerSideLandingcc/BuyerSideRowOf3'
+
+import SubCatButton from 'src/components/storefrontfolder/SubCatButton'
 
 import Page from 'src/components/Page'
 import firebase from 'src/firebase/firebase'
@@ -30,43 +33,41 @@ export default function Home() {
 
 	const [posts, setPosts] = useState([])
 
-	useEffect(() => {
-		setIsLoading(true)
-		firebase
-			.firestore()
-			.collection('norway')
-			.doc('posts')
-			.collection('category')
-			.get()
-			.then((querySnapshot) => {
-				const newArray = []
-				querySnapshot.forEach((doc) => {
-					// doc.data() is never undefined for query doc snapshots
-					console.log(doc.data())
-					newArray.push(doc.data())
-				})
-				setPosts(newArray)
-				setIsLoading(false)
-			})
-	}, [])
+	// useEffect(() => {
+	// 	setIsLoading(true)
+	// 	firebase
+	// 		.firestore()
+	// 		.collection('posts')
+	// 		.get()
+	// 		.then((querySnapshot) => {
+	// 			const newArray = []
+	// 			querySnapshot.forEach((doc) => {
+	// 				// doc.data() is never undefined for query doc snapshots
+	// 				console.log(doc.data())
+	// 				newArray.push(doc.data())
+	// 			})
+	// 			setPosts(newArray)
+	// 			setIsLoading(false)
+	// 		})
+	// }, [])
 
-	const getMorePosts = () => {
-		firebase
-			.firestore()
-			.collection('norway')
-			.doc('posts')
-			.collection('category')
-			.get()
-			.then((querySnapshot) => {
-				const newArray = [...posts]
-				querySnapshot.forEach((doc) => {
-					// doc.data() is never undefined for query doc snapshots
-					console.log(doc.data())
-					newArray.push(doc.data())
-				})
-				setPosts(newArray)
-			})
-	}
+	// const getMorePosts = () => {
+	// 	firebase
+	// 		.firestore()
+	// 		.collection('norway')
+	// 		.doc('posts')
+	// 		.collection('category')
+	// 		.get()
+	// 		.then((querySnapshot) => {
+	// 			const newArray = [...posts]
+	// 			querySnapshot.forEach((doc) => {
+	// 				// doc.data() is never undefined for query doc snapshots
+	// 				console.log(doc.data())
+	// 				newArray.push(doc.data())
+	// 			})
+	// 			setPosts(newArray)
+	// 		})
+	// }
 
 	// useEffect(() => {
 	//   setIsLoading(true);
@@ -232,28 +233,116 @@ export default function Home() {
 		},
 	])
 
+	const [forMen, setForMen] = useState([
+		{
+			title: 'Hoodies',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fwhereslugo-qq-YDhd3bbg-unsplash.jpg?alt=media&token=f8b1405e-9971-4094-ae07-61047d8de387',
+		},
+		{
+			title: 'Shoes',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fproduct_18.jpg?alt=media&token=dababc6a-5995-4107-811e-644e233b1d30',
+		},
+		{
+			title: 'Jackets',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Famanda-vick-ohWf6YuzOQk-unsplash.jpg?alt=media&token=65c8cc38-3b6c-43a0-a5e3-0cbc6be2ed8f',
+		},
+	])
+
+	const [forWomen, setForWomen] = useState([
+		{
+			title: 'Hats',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fclem-onojeghuo-vU2MmvDCmUo-unsplash.jpg?alt=media&token=d01a90f1-8061-4107-9bcc-7e8c2ef4c226',
+		},
+		{
+			title: 'Dresses',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Falexander-kovacs-NHqLJrlHvDY-unsplash.jpg?alt=media&token=20b4077a-5c74-4955-b5ef-161315c209ea',
+		},
+		{
+			title: 'Shoes',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fproduct_10.jpg?alt=media&token=4a4f0816-ed47-4716-a736-9a308b0236d5',
+		},
+		{
+			title: 'Accessories',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fvadim-sherbakov-tCICLJ5ktBE-unsplash.jpg?alt=media&token=53327112-ab95-4f89-9081-9a0566254320',
+		},
+	])
+
+	const [electronics, setElectronics] = useState([
+		{
+			title: 'Phones',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fomid-armin-skoebzCO9tc-unsplash.jpg?alt=media&token=b6aef3f4-5b48-41a3-b50b-894d7f78a209',
+		},
+		{
+			title: 'Fridges',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fnrd-FDQFZHY9iG4-unsplash.jpg?alt=media&token=a0f2fc4f-cfd1-4b52-a32c-56a8f0d7bba3',
+		},
+		{
+			title: 'Tv & Screen',
+			img: 'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/mock-images%2Fjonas-leupe-Fhwg7BrGUpk-unsplash.jpg?alt=media&token=6324917d-5aa3-4e94-94c6-72c4871e3189',
+		},
+	])
+
 	return (
 		<MainLayout>
 			<BuyerSideWelcome subcats={subcats} user={user} maincats={maincats} />
 
-			<Grid container spacing={2}>
-				<BuyerSideHighlight post={posts.slice(0, 1)} isLoading={isLoading} />
-				<BuyerSideRowOf3 highlightedCollection={posts.slice(0, 3)} />
-				<BuyerSideHighlight post={posts.slice(1, 2)} isLoading={isLoading} />
-				<BuyerSideHighlightRow highlightedCollection={posts.slice(0, 2)} />
-			</Grid>
-
-			<InfiniteScroll
-				next={getMorePosts}
-				hasMore
-				loader={<Typography variant='h6'>Getting more posts...</Typography>}
-				dataLength={posts.length}
-				style={{ overflow: 'hidden' }}
-			>
-				{posts.map((item, index) => (
-					<BuyerSideHighlight post={[item]} isLoading={isLoading} key={index} />
+			<Grid container spacing={1} p={1}>
+				<Grid item xs={12}>
+					<Typography variant='h3' gutterBottom>
+						Browse categories
+					</Typography>
+				</Grid>
+				<Grid item xs={12}>
+					<Typography variant='h6' gutterBottom>
+						For Men
+					</Typography>
+				</Grid>
+				{forMen.map((item, index) => (
+					<Grid item xs={4} key={index}>
+						<NextLink href='/ForMen/jackets'>
+							<SubCatButton subcatTitle={item.title} subcatImg={item.img} />
+						</NextLink>
+					</Grid>
 				))}
-			</InfiniteScroll>
+
+				<Grid item xs={12}>
+					<Typography variant='h6' gutterBottom>
+						For Women
+					</Typography>
+				</Grid>
+				{forWomen.map((item, index) => (
+					<Grid item xs={3} key={index}>
+						<NextLink href='/ForMen/jackets'>
+							<SubCatButton subcatTitle={item.title} subcatImg={item.img} />
+						</NextLink>
+					</Grid>
+				))}
+
+				<Grid item xs={12}>
+					<Typography variant='h6' gutterBottom>
+						Electronics
+					</Typography>
+				</Grid>
+				{electronics.map((item, index) => (
+					<Grid item xs={4} key={index}>
+						<NextLink href='/ForMen/jackets'>
+							<SubCatButton subcatTitle={item.title} subcatImg={item.img} />
+						</NextLink>
+					</Grid>
+				))}
+			</Grid>
 		</MainLayout>
 	)
 }
+
+// <InfiniteScroll
+// 				next={getMorePosts}
+// 				hasMore
+// 				loader={<Typography variant='h6'>Getting more posts...</Typography>}
+// 				dataLength={posts.length}
+// 				style={{ overflow: 'hidden' }}
+// 			>
+// 				{posts.map((item, index) => (
+// 					<BuyerSideHighlight post={[item]} isLoading={isLoading} key={index} />
+// 				))}
+// 			</InfiniteScroll>
