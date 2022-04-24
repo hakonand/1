@@ -112,7 +112,8 @@ export default function Home() {
 			id: 'Interior',
 			description:
 				'Scroll to see the best selection of subcat sada sda sdasd ada dasdas',
-			image: '/static/home/product_img_1.jpg',
+			image:
+				'https://firebasestorage.googleapis.com/v0/b/heia-daf6b.appspot.com/o/dress%2Flanding%2Fpexels-lumn-322207.jpg?alt=media&token=3c33281a-4f18-46e4-94fc-5b58e74fac4b',
 			color1: '#fde4cf',
 			color2: '#FFCFD2',
 		},
