@@ -42,14 +42,16 @@ export default function Favorites() {
     const api = await axios.post("/api/create-stripe-session", {
       items: [item],
     });
-
-    await firebase.firestore().collection("transactions")
+    await window.open(api.data.session.url, "_blank");
+    await firebase
+      .firestore()
+      .collection("transactions")
       .doc("transactions")
       .set(api.data.ress);
 
-
     //set to transactions
-    await db.collection("transactions")
+    await db
+      .collection("transactions")
       .doc("transactions")
       .get()
       .then(function (doc) {
