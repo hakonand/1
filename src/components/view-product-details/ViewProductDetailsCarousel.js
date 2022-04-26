@@ -5,9 +5,11 @@ import { useState, useRef, useEffect } from 'react'
 // material
 import { alpha, styled } from '@mui/material/styles'
 import { Box } from '@mui/material'
+import Image from 'next/image'
+
 //
 import LightboxModal from '../LightboxModal'
-import { CarouselControlsArrowsIndex } from '../carousel'
+import { CarouselControlsArrowsBasic2 } from '../carousel'
 
 // ----------------------------------------------------------------------
 
@@ -66,12 +68,20 @@ LargeItem.propTypes = {
 	onOpenLightbox: PropTypes.func,
 }
 
+// <LargeImgStyle
+// 				alt='large image'
+// 				src={item}
+// 				onClick={() => onOpenLightbox(item)}
+// 			/>
+
 function LargeItem({ item, onOpenLightbox }) {
 	return (
 		<Box sx={{ cursor: 'zoom-in', paddingTop: '100%', position: 'relative' }}>
-			<LargeImgStyle
+			<Image
 				alt='large image'
 				src={item}
+				layout='fill'
+				priority
 				onClick={() => onOpenLightbox(item)}
 			/>
 		</Box>
@@ -165,12 +175,15 @@ export default function ViewProductDetailsCarousel({
 							/>
 						))}
 					</Slider>
-					<CarouselControlsArrowsIndex
-						index={currentIndex}
-						total={productImages.length}
-						onNext={handleNext}
-						onPrevious={handlePrevious}
-					/>
+
+					{productImages.length > 1 ? (
+						<CarouselControlsArrowsBasic2
+							onNext={handleNext}
+							onPrevious={handlePrevious}
+						/>
+					) : (
+						<div />
+					)}
 				</Box>
 			</Box>
 
@@ -203,11 +216,15 @@ export default function ViewProductDetailsCarousel({
 					}),
 				}}
 			>
-				<Slider {...settings2} asNavFor={nav1} ref={slider2}>
-					{productImages.map((item) => (
-						<ThumbnailItem key={item} item={item} />
-					))}
-				</Slider>
+				{productImages.length > 1 ? (
+					<Slider {...settings2} asNavFor={nav1} ref={slider2}>
+						{productImages.map((item) => (
+							<ThumbnailItem key={item} item={item} />
+						))}
+					</Slider>
+				) : (
+					<div />
+				)}
 			</Box>
 
 			<LightboxModal

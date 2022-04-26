@@ -6,6 +6,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import { useRouter } from 'next/router'
 import roundAddShoppingCart from '@iconify/icons-ic/round-add-shopping-cart'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { black } from '@mui/material/colors'
 
 // material
 import { useTheme, styled } from '@mui/material/styles'
@@ -165,7 +166,7 @@ export default function ViewProductDetailsSummary({
 		<RootStyle {...other}>
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
-					<Typography variant='h5'>{data.name}</Typography>
+					<Typography variant='h3'>{data.name}</Typography>
 				</Grid>
 				<Grid item xs={12}>
 					<Typography paragraph variant='overline' color='text.secondary'>
@@ -174,16 +175,24 @@ export default function ViewProductDetailsSummary({
 				</Grid>
 
 				<Grid item xs={12}>
-					<Typography variant='subtitle1'>
-						{data.price.toLocaleString('en-US', {
-							style: 'currency',
-							currency: 'NOK',
-						})}
-					</Typography>
+					<Typography variant='subtitle1'>{data.price * 100} kr</Typography>
 				</Grid>
+				<Grid
+					item
+					xs={12}
+					sx={{
+						display: 'flex',
+						justifyContent: 'space-between',
+					}}
+				>
+					<Typography variant='subtitle1' sx={{ mt: 0.5 }}>
+						Quantity
+					</Typography>
 
+					<Incrementer name='quantity' available={productAvaiable} />
+				</Grid>
 				<Grid item xs={12}>
-					<FormControl fullWidth>
+					<FormControl fullWidth variant='standard'>
 						<InputLabel id='demo-simple-select-label'>Size</InputLabel>
 
 						<Select
@@ -200,6 +209,20 @@ export default function ViewProductDetailsSummary({
 						</Select>
 					</FormControl>
 				</Grid>
+
+				<Grid item xs={12}>
+					<Button
+						fullWidth
+						size='large'
+						variant='contained'
+						color='info'
+						startIcon={<Icon icon={roundAddShoppingCart} />}
+						onClick={handleAddCart}
+					>
+						Add to Cart
+					</Button>
+				</Grid>
+
 				<Grid item xs={12}>
 					<Typography variant='subtitle1' sx={{ mt: 0.5 }}>
 						Description
@@ -230,35 +253,6 @@ export default function ViewProductDetailsSummary({
 					</Grid>
 				)}
 
-				<Grid
-					item
-					xs={12}
-					sx={{
-						mb: 3,
-						display: 'flex',
-						justifyContent: 'space-between',
-					}}
-				>
-					<Typography variant='subtitle1' sx={{ mt: 0.5 }}>
-						Quantity
-					</Typography>
-
-					<Incrementer name='quantity' available={productAvaiable} />
-				</Grid>
-
-				<Grid item xs={12}>
-					<Button
-						fullWidth
-						size='large'
-						type='button'
-						variant='contained'
-						startIcon={<Icon icon={roundAddShoppingCart} />}
-						onClick={handleAddCart}
-						sx={{ my: theme.spacing(3) }}
-					>
-						Add to Cart
-					</Button>
-				</Grid>
 				<Snackbar
 					open={openSnackBar}
 					autoHideDuration={5000}

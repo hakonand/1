@@ -45,11 +45,11 @@ const SECONDARY = {
 	contrastText: '#fff',
 }
 const INFO = {
-	lighter: '#D0BCF0',
-	light: '#C4ABED',
-	main: '#ad8ae5',
-	dark: '#9568DE',
-	darker: '#7E47D7',
+	lighter: '#000814',
+	light: '#000814',
+	main: '#000814',
+	dark: '#000814',
+	darker: '#000814',
 	contrastText: '#fff',
 }
 const SUCCESS = {
